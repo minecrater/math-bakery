@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Math Bakery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="sprinkles" aria-hidden="true"></div>
+    <main class="app">
+      <section id="setup" class="card screen">
+        <p class="eyebrow">Fresh math practice</p>
+        <h1>Math Bakery</h1>
+        <p class="tagline">Choose a level and bake a batch of math problems.</p>
+
+        <fieldset class="ops bakers">
+          <legend>Choose a level</legend>
+          <label class="chip">
+            <input type="radio" name="baker" value="speedy" checked />
+            <span>Speedy <em>6s · perfect</em></span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="baker" value="practice" />
+            <span>Practice <em>no timer</em></span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="baker" value="beginner" />
+            <span>Beginner <em>easy · no timer</em></span>
+          </label>
+        </fieldset>
+
+        <fieldset class="ops">
+          <legend>Choose one operation</legend>
+          <label class="chip">
+            <input type="radio" name="op" value="add" checked />
+            <span>Addition <em>+</em></span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="op" value="sub" />
+            <span>Subtraction <em>−</em></span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="op" value="mul" />
+            <span>Multiplication <em>×</em></span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="op" value="div" />
+            <span>Division <em>÷</em></span>
+          </label>
+        </fieldset>
+
+        <label class="count-label" for="question-count">How many questions?</label>
+        <input
+          id="question-count"
+          class="count-input"
+          type="number"
+          min="1"
+          max="200"
+          value="50"
+          inputmode="numeric"
+        />
+
+        <button id="start-btn" class="primary" type="button">Start the round</button>
+      </section>
+
+      <section id="quiz" class="card screen hidden">
+        <div class="quiz-top">
+          <p id="progress" class="progress">Question 1 of 50</p>
+          <p id="live-score" class="live-score">
+            <span class="dot green"></span><span id="green-live">0</span>
+            <span class="timed-only"><span class="dot yellow"></span><span id="yellow-live">0</span></span>
+            <span class="dot red"></span><span id="red-live">0</span>
+          </p>
+        </div>
+
+        <div id="timer-wrap" class="timer-wrap" aria-label="Sprinkle timer">
+          <div id="timer-fill" class="timer-fill"></div>
+        </div>
+        <p id="timer-note" class="timer-note">Sprinkle timer: 6 seconds for green</p>
+
+        <p id="problem" class="problem">3 + 4</p>
+        <p id="flash" class="flash" aria-live="polite"></p>
+
+        <form id="answer-form" class="answer-form" autocomplete="off">
+          <input
+            id="answer"
+            class="answer"
+            type="text"
+            inputmode="numeric"
+            pattern="-?[0-9]*"
+            maxlength="5"
+            aria-label="Your answer"
+            autofocus
+          />
+          <button class="primary submit" type="submit">Go!</button>
+        </form>
+
+        <div class="keypad" aria-label="Number pad">
+          <button type="button" data-key="7">7</button>
+          <button type="button" data-key="8">8</button>
+          <button type="button" data-key="9">9</button>
+          <button type="button" data-key="4">4</button>
+          <button type="button" data-key="5">5</button>
+          <button type="button" data-key="6">6</button>
+          <button type="button" data-key="1">1</button>
+          <button type="button" data-key="2">2</button>
+          <button type="button" data-key="3">3</button>
+          <button type="button" data-key="-">−</button>
+          <button type="button" data-key="0">0</button>
+          <button type="button" data-key="back">⌫</button>
+        </div>
+        <button id="done-btn" class="ghost" type="button">I'm done</button>
+        <p id="done-note" class="timer-note">You can stop whenever you want.</p>
+      </section>
+
+      <section id="results" class="card screen hidden">
+        <h1 id="results-title">Batch complete</h1>
+        <p id="results-sub" class="tagline"></p>
+        <div id="dance" class="dance hidden" aria-hidden="true">
+          <div class="cupcake">
+            <div class="frosting"></div>
+            <div class="wrapper"></div>
+            <div class="cherry"></div>
+          </div>
+          <div class="confetti"></div>
+        </div>
+        <ul class="tally">
+          <li><span class="dot green"></span> <span id="green-label">Green (fast + right)</span> <strong id="green-final">0</strong></li>
+          <li class="timed-only"><span class="dot yellow"></span> Yellow (slow + right) <strong id="yellow-final">0</strong></li>
+          <li><span class="dot red"></span> Red (wrong) <strong id="red-final">0</strong></li>
+        </ul>
+        <button id="again-btn" class="primary" type="button">Bake another batch</button>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
