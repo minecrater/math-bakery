@@ -169,15 +169,18 @@ function nextQuestion() {
 }
 
 function startRound() {
-  const count = Number.parseInt(countInput.value, 10);
-  if (!Number.isFinite(count) || count < 1) {
+  const count = countInput.valueAsNumber;
+  if (!Number.isInteger(count) || count < 1 || count > 200) {
+    countInput.setCustomValidity("Enter a whole number from 1 to 200.");
+    countInput.reportValidity();
     countInput.focus();
     return;
   }
+  countInput.setCustomValidity("");
   state.baker = document.querySelector('input[name="baker"]:checked').value;
   state.limitMs = BAKERS[state.baker].limitMs;
   state.op = document.querySelector('input[name="op"]:checked').value;
-  state.total = Math.min(200, Math.max(1, count));
+  state.total = count;
   const timed = Boolean(state.limitMs);
   quizEl.classList.toggle("untimed", !timed);
   quizEl.classList.toggle("can-stop", BAKERS[state.baker].allowEarlyEnd);
@@ -247,10 +250,10 @@ function sprinkleConfetti() {
 function grade(raw) {
   if (state.locked) return;
   const trimmed = raw.trim();
-  if (trimmed === "" || trimmed === "-") return;
+  if (!/^-?\d+$/.test(trimmed)) return;
 
-  const guess = Number.parseInt(trimmed, 10);
-  if (!Number.isFinite(guess)) return;
+  const guess = Number(trimmed);
+  if (!Number.isSafeInteger(guess)) return;
 
   state.locked = true;
   const elapsed = performance.now() - state.startedAt;
@@ -291,6 +294,9 @@ bakerInputs.forEach((input) => {
 });
 countInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") startRound();
+});
+countInput.addEventListener("input", () => {
+  countInput.setCustomValidity("");
 });
 
 formEl.addEventListener("submit", (event) => {

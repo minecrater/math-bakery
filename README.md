@@ -21,3 +21,10 @@ Then open [http://localhost:8000](http://localhost:8000).
 - Beginner uses smaller numbers.
 - Division problems never show a dividend or divisor above 12.
 - Passing unlocks the cupcake dance.
+
+## Security and privacy
+
+- No accounts, backend, cookies, analytics, or stored personal data.
+- No third-party scripts, packages, fonts, or network requests.
+- A Content Security Policy restricts the page to its own local files.
+- Question counts must be whole numbers from 1 through 200.

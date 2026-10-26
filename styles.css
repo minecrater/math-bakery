@@ -22,7 +22,7 @@ body {
 }
 
 body {
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
   color: var(--ink);
   background:
     radial-gradient(circle at 12% 18%, #ffd6e8 0, transparent 32%),
@@ -67,7 +67,7 @@ body {
 }
 
 h1 {
-  font-family: "Fredoka", sans-serif;
+  font-family: ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
   font-size: clamp(2.2rem, 8vw, 3.2rem);
   margin: 0 0 8px;
   text-align: center;
@@ -296,7 +296,7 @@ legend {
 }
 
 .problem {
-  font-family: "Fredoka", sans-serif;
+  font-family: ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
   font-size: clamp(2.6rem, 10vw, 4rem);
   text-align: center;
   margin: 8px 0 4px;
